@@ -9,25 +9,25 @@ export const TabHeaderContainer = styled.div`
 export const StylizedTab = styled.button`
   width: 100%;
   padding: 10px 10px;
-  margin: 0.8rem;
+  margin: 0.5rem 0.8rem;
   font-size: 1.25rem;
-  //background: linear-gradient(269.42deg, #CD8416 33.5%, #FFBB55 69.21%);
-  background: #000000B8;
+  color: white;
+  background: transparent;
   mix-blend-mode: normal;
   border-radius: 25px;
   font-family: Roboto;
   border: none;
   border-bottom-color: none;
   outline: none;
-      border:none;
+  border:none;
   cursor: ${(p) => (p.disabled ? "default" : "pointer")};
   ${(p) =>
     p.active &&
     css`
-      color: #ffbb00;
       font-weight: bold;
       outline: none;
       border:none;
+      background: #D13738;
     `}
   ${(p) => !p.active && p.inactiveStyle}
 `;
@@ -43,6 +43,13 @@ export const TabsHolder = styled.div`
   display: flex;
   /* can be used to stack them vertically by using column*/
   flex-direction: row;
+  background: #E75353;
+  border-radius: 35px;
+  width: 50%;
+  align-self: center;
+  @media(max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 export const inactiveTab = {
