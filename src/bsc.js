@@ -24,6 +24,9 @@ import RealTimeChart from "./chart";
 import Web3 from "web3";
 
 import rabbitsImg from "./assets/img/rabbits.png";
+import coinImg from "./assets/img/chinese_coin.png";
+import gateImg from "./assets/img/chinese_gate.png";
+
 import nft1 from "./assets/img/nfts/1.jpg";
 import nft2 from "./assets/img/nfts/2.jpg";
 import nft3 from "./assets/img/nfts/3.jpg";
@@ -1326,49 +1329,56 @@ function WealthMountain() {
                             </CardDeck>
                         </Container>
                         <CardDeck className="p-3">
-                            {/* <Card body className="text-center text-lightblue">
-                                <h4 className="calvino text-lightblue">Total Staked Value</h4>
-                                <h1 className="source font-weight-bold text-white">$<TotalStakedValue /></h1>
-                                <UnstakeOptions />
-                            </Card> */}
                             <Card body className="text-center text-lightblue">
-                                <h4 className="calvino text-white">Total Wealth Earned</h4>
-                                <CardDeck>
-                                    <Card style={{ background: "transparent" }}>
-                                        <h4 className="source font-weight-bold text-white"><TotalEarnedPercent /></h4>
+                                <CardDeck className="sub-card">
+                                    <Card>
+                                        <h4 className="calvino text-white">Total Wealth Earned</h4>
+                                        <CardDeck>
+                                            <Card style={{ background: "transparent" }}>
+                                                <h4 className="source font-weight-bold text-white"><TotalEarnedPercent /></h4>
+                                            </Card>
+                                            <Card style={{ background: "transparent" }}>
+                                                <h4 className="source font-weight-bold text-white">$<TotalEarnedValue /></h4>
+                                            </Card>
+                                        </CardDeck>
+                                        <Row>
+                                            <Col>
+                                                {/* <Button className="custom-button source mt-3" outline onClick={compound}>compound</Button> */}
+                                                <Button className="custom-button source mt-3" outline onClick={withdrawDivs}>Withdraw</Button>
+                                            </Col>
+                                        </Row>
                                     </Card>
-                                    <Card style={{ background: "transparent" }}>
-                                        <h4 className="source font-weight-bold text-white">$<TotalEarnedValue /></h4>
+                                    <Card style={{alignSelf:'center'}}>
+                                        <img src={coinImg} width="150px" alt="chinese coin"/>
                                     </Card>
                                 </CardDeck>
-                                <Row>
-                                    <Col>
-                                        <Button className="custom-button source mt-3" outline onClick={compound}>compound</Button>
-                                        <Button className="custom-button source mt-3" outline onClick={withdrawDivs}>collect</Button>
-                                    </Col>
-                                </Row>
-                                <small className="pt-2 source">Note: Collecting will reset all stakes to 3.5% daily. Compound will add to your stakes while doing the same.</small>
                             </Card>
                         </CardDeck>
                         <CardDeck className="pl-3 pr-3 pb-3">
-                            {/* <Card body className="text-center text-lightblue">
-                                <h5 className="calvino text-lightblue">Referrals Earned</h5>
-                                {refBonusLoading ? <></> :
-                                    <>
-                                        <h4 className="source font-weight-bold text-white">${referralAccrued}</h4>
-                                        <Row>
-                                            <Col>
-                                                <Button className="custom-button source mt-2" outline onClick={stakeRefBonus}>STAKE</Button>
-                                                <Button className="custom-button source mt-2" outline onClick={withdrawRefBonus}>COLLECT</Button>
-                                            </Col>
-                                        </Row>
-                                    </>}
-
-                            </Card> */}
                             <Card body className="text-center text-lightblue">
-                                <h5 className="calvino text-white">Referral Link</h5>
-                                <h3 type="button" onClick={() => navigator.clipboard.writeText("https://busd.wcminer.com?ref=" + userWalletAddress)} className="referralButton source font-weight-bold"><FaCopy size="1.6em" className="pr-3" />COPY LINK</h3>
-                                <small className="source text-lightblue">Earn 10% when someone uses your referral link.</small>
+                                <CardDeck className="sub-card">
+                                    <Card>
+                                        <h4 className="calvino text-white">Referral Link</h4>
+                                        {/* <h3 type="button" onClick={() => navigator.clipboard.writeText("https://busd.wcminer.com?ref=" + userWalletAddress)} className="referralButton source font-weight-bold"><FaCopy size="1.6em" className="pr-3" />COPY LINK</h3> */}
+                                        <Form onClick={() => navigator.clipboard.writeText(window.location + "?ref=" + userWalletAddress)}>
+                                            <FormGroup>
+                                                <InputGroup>
+                                                    <Input
+                                                        className="custom-input text-center source"
+                                                        placeholder={window.location + "?ref=" + userWalletAddress}
+                                                        disabled
+                                                    >
+                                                    {/* <FaCopy style={{background:'white'}}/> */}
+                                                    </Input>
+                                                </InputGroup>
+                                            </FormGroup>
+                                        </Form>
+                                        <small className="source text-lightblue">Earn 10% of every buy when someone uses your referral link!</small>
+                                    </Card>
+                                    <Card style={{alignSelf:'center'}}>
+                                        <img src={gateImg} width="150px" alt="chinese coin"/>
+                                    </Card>
+                                </CardDeck>
                             </Card>
                         </CardDeck>
                         {/* <CardDeck className="pt-2 pr-3 pl-3 pb-3">

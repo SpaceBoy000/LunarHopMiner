@@ -3627,7 +3627,7 @@ input[type="button"].btn-block {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 0.0625rem solid rgba(0, 0, 0, 0.05);
+  /* border: 0.0625rem solid rgba(0, 0, 0, 0.05); */
   border-radius: 0.25rem; }
   .card > hr {
     margin-right: 0;
@@ -17238,8 +17238,8 @@ td.rdtYear:hover {
 }
 
 .custom-input {
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 15px;
+  background: #D13738;
+  border-radius: 25px;
   border: none;
   color: white;
 }
@@ -17409,6 +17409,10 @@ td.rdtYear:hover {
 
   .nft-card {
     align-self: center;
+  }
+
+  .sub-card {
+    flex-direction: column-reverse;
   }
 }
 
