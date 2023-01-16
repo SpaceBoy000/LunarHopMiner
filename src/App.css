@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
+
 .App {
   text-align: center;
 }
@@ -96,7 +98,7 @@ hr.rounded {
   border-radius:10px;
 }
 .calvino {
-  font-family:Roboto;
+  font-family:Montserrat;
 }
 
 .libertine {
@@ -104,12 +106,12 @@ hr.rounded {
 }
 
 .source {
-  font-family:Roboto;
+  font-family:Montserrat;
   color: white;
 }
 
 .source-bold {
-  font-family:Roboto Bold;
+  font-family:Montserrat Bold;
 }
 .App-link {
   color: #61dafb;
@@ -181,7 +183,7 @@ hr.rounded {
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Montserrat, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 
 *,
@@ -200,7 +202,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Montserrat', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-size: 1rem;
   font-weight: 400;
@@ -454,7 +456,7 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
-  font-family: inherit;
+  font-family: "Montserrat";
   font-weight: 400;
   line-height: 1.5;
   color: #fb0; }
@@ -4708,7 +4710,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -4793,7 +4795,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -13024,7 +13026,7 @@ textarea[resize="horizontal"] {
 
 .navbar-nav .nav-link {
   font-size: 0.9rem;
-  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   text-transform: normal;
   letter-spacing: 0;
@@ -17185,14 +17187,14 @@ td.rdtYear:hover {
 
 .custom-button {
   background: #ffbb00;
-  color: black;
+  color: white;
   mix-blend-mode: normal;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   border: none;
   font-weight: 'bold';
   min-width: 134px;
-  font-family: 'Roboto';
+  font-family: 'Montserrat';
 }
 
 .card {
@@ -17307,9 +17309,9 @@ td.rdtYear:hover {
     width: 60%;
     height: 100vh;
     left: 0px;
-    background: #1e2c37;
+    background: #ad2f2f;
     opacity: 0.9;
-    border-right: 5px solid #ffbb00;
+    border-right: 5px solid #d13738;
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
@@ -17458,7 +17460,7 @@ td.rdtYear:hover {
 
 
 .faqheading {
-  font-family: 'Roboto';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -17467,7 +17469,7 @@ td.rdtYear:hover {
 }
 
 .faqbody {
-  font-family: 'Roboto';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -17504,4 +17506,17 @@ td.rdtYear:hover {
 .accordion-item:last-of-type {
   border-bottom-left-radius: 23px;
   border-bottom-right-radius: 23px;
+}
+
+.mobile-menu-item {
+  color: white;
+  text-decoration: none;
+  font-weight: bolder;
+  font-family: 'Montserrat';
+}
+
+.connect-button {
+  max-height: 43px;
+  background-color: #FEB800;
+  color: white;
 }

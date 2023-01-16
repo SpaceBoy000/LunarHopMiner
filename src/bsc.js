@@ -155,85 +155,59 @@ function WealthMountain() {
           },
         ],
         [
-          {
-            path: nft2,
-            name: 'Uncommon'
-          },
-          {
-            properties : [
-              {
-                label: "Daily Return",
-                value: '$1.1',
-              },
-              {
-                label: "Price",
-                value: "$20",
-              },
-              {
-                label: "Life Span",
-                value: '30 Days',
-              },
-              {
-                label: "Total Income",
-                value: '$33',
-              }
-            ]
-          },
+            {
+              path: nft6,
+              name: 'Mytical'
+            },
+            {
+              properties : [
+                {
+                  label: "Daily Return",
+                  value: '$255',
+                },
+                {
+                  label: "Price",
+                  value: "$5000",
+                },
+                {
+                  label: "Life Span",
+                  value: '60 Days',
+                },
+                {
+                  label: "Total Income",
+                  value: '$15300',
+                }
+              ]
+            },
         ],
         [
-          {
-            path: nft3,
-            name: 'Rare'
-          },
-          {
-            properties : [
-              {
-                label: "Daily Return",
-                value: '$5',
-              },
-              {
-                label: "Price",
-                value: "$120",
-              },
-              {
-                label: "Life Span",
-                value: '45 Days',
-              },
-              {
-                label: "Total Income",
-                value: '$225',
-              }
-            ]
-          },
+            {
+              path: nft4,
+              name: 'Super Rare'
+            },
+            {
+              properties : [
+                {
+                  label: "Daily Return",
+                  value: '$14',
+                },
+                {
+                  label: "Price",
+                  value: "$300",
+                },
+                {
+                  label: "Life Span",
+                  value: '45 Days',
+                },
+                {
+                  label: "Total Income",
+                  value: '$630',
+                }
+              ]
+            },
         ],
     ];
     const nutritionFacts2 = [
-        [
-          {
-            path: nft4,
-            name: 'Super Rare'
-          },
-          {
-            properties : [
-              {
-                label: "Daily Return",
-                value: '$14',
-              },
-              {
-                label: "Price",
-                value: "$300",
-              },
-              {
-                label: "Life Span",
-                value: '45 Days',
-              },
-              {
-                label: "Total Income",
-                value: '$630',
-              }
-            ]
-          },
-        ],
         [
           {
             path: nft5,
@@ -261,30 +235,56 @@ function WealthMountain() {
           },
         ],
         [
-          {
-            path: nft6,
-            name: 'Mytical'
-          },
-          {
-            properties : [
-              {
-                label: "Daily Return",
-                value: '$255',
-              },
-              {
-                label: "Price",
-                value: "$5000",
-              },
-              {
-                label: "Life Span",
-                value: '60 Days',
-              },
-              {
-                label: "Total Income",
-                value: '$15300',
-              }
-            ]
-          },
+            {
+              path: nft3,
+              name: 'Rare'
+            },
+            {
+              properties : [
+                {
+                  label: "Daily Return",
+                  value: '$5',
+                },
+                {
+                  label: "Price",
+                  value: "$120",
+                },
+                {
+                  label: "Life Span",
+                  value: '45 Days',
+                },
+                {
+                  label: "Total Income",
+                  value: '$225',
+                }
+              ]
+            },
+        ],
+        [
+            {
+              path: nft2,
+              name: 'Uncommon'
+            },
+            {
+              properties : [
+                {
+                  label: "Daily Return",
+                  value: '$1.1',
+                },
+                {
+                  label: "Price",
+                  value: "$20",
+                },
+                {
+                  label: "Life Span",
+                  value: '30 Days',
+                },
+                {
+                  label: "Total Income",
+                  value: '$33',
+                }
+              ]
+            },
         ],
     ];
 
@@ -374,49 +374,49 @@ function WealthMountain() {
         setAuditNo(audits[(cnt + 1) % 2].link);
     }
 
-    // const [countdown, setCountdown] = useState({
-    //     alive: true,
-    //     days: 0,
-    //     hours: 0,
-    //     minutes: 0,
-    //     seconds: 0
-    // })
+    const [countdown, setCountdown] = useState({
+        alive: true,
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+    })
 
-    // const getCountdown = (deadline) => {
-    //     const now = Date.now() / 1000;
-    //     const total = deadline - now;
-    //     const seconds = Math.floor((total) % 60);
-    //     const minutes = Math.floor((total / 60) % 60);
-    //     const hours = Math.floor((total / (60 * 60)) % 24);
-    //     const days = Math.floor(total / (60 * 60 * 24));
+    const getCountdown = (deadline) => {
+        const now = Date.now() / 1000;
+        const total = deadline - now;
+        const seconds = Math.floor((total) % 60);
+        const minutes = Math.floor((total / 60) % 60);
+        const hours = Math.floor((total / (60 * 60)) % 24);
+        const days = Math.floor(total / (60 * 60 * 24));
 
-    //     return {
-    //         total,
-    //         days,
-    //         hours,
-    //         minutes,
-    //         seconds
-    //     };
-    // }
+        return {
+            total,
+            days,
+            hours,
+            minutes,
+            seconds
+        };
+    }
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         try {
-    //             const data = getCountdown(1662138120)
-    //             setCountdown({
-    //                 alive: data.total > 0,
-    //                 days: data.days,
-    //                 hours: data.hours,
-    //                 minutes: data.minutes,
-    //                 seconds: data.seconds
-    //             })
-    //         } catch (err) {
-    //             console.log(err);
-    //         }
-    //     }, 1000);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            try {
+                const data = getCountdown(1674374400)
+                setCountdown({
+                    alive: data.total > 0,
+                    days: data.days,
+                    hours: data.hours,
+                    minutes: data.minutes,
+                    seconds: data.seconds
+                })
+            } catch (err) {
+                console.log(err);
+            }
+        }, 1000);
 
-    //     return () => clearInterval(interval);
-    // }, [])
+        return () => clearInterval(interval);
+    }, [])
 
     async function requestAccount() {
         console.log('Requesting account...');
@@ -1093,13 +1093,7 @@ function WealthMountain() {
                                 setMobile(true)
                             }}>
                                 <a href="https://bscscan.com/address/0xbcae54cdf6a1b1c60ec3d44114b452179a96c1e3" target="_blank" rel="noreferrer"
-                                    className="swap_btn"
-                                    style={{
-                                        color: 'white',
-                                        textDecoration: 'none',
-                                        fontWeight: "bolder",
-                                        fontFamily: 'Roboto'
-                                    }}
+                                    className="mobile-menu-item"
                                 >
                                     CONTRACT
                                 </a>
@@ -1108,13 +1102,7 @@ function WealthMountain() {
                                 setMobile(true)
                             }}>
                                 <a href="/whitepaper.pdf" target="_blank" rel="noreferrer"
-                                    className="stable_btn"
-                                    style={{
-                                        color: 'white',
-                                        textDecoration: 'none',
-                                        fontWeight: "bolder",
-                                        fontFamily: 'Roboto'
-                                    }}
+                                    className="mobile-menu-item"
                                 >
                                     <span> HOP PAPER </span>
                                 </a>
@@ -1123,13 +1111,7 @@ function WealthMountain() {
                                 setMobile(true)
                             }}>
                                 <a href="/whitepaper.pdf" target="_blank" rel="noreferrer"
-                                    className="stable_btn"
-                                    style={{
-                                        color: 'white',
-                                        textDecoration: 'none',
-                                        fontWeight: "bolder",
-                                        fontFamily: 'Roboto'
-                                    }}
+                                    className="mobile-menu-item"
                                 >
                                     <span> BUY NFT </span>
                                 </a>
@@ -1137,16 +1119,11 @@ function WealthMountain() {
                             
                         </div>
                         <div style={{ flex: 1 }}></div>
-                        <div
-                            className="mobile_connect"
-                        >
-                            <Button
-                                className='custom-button'
-                                style={{ maxHeight: "43px", backgroundColor: '#000000b8', color: '#ffbb00' }}
-                                onClick={requestAccount}>
-                                {connectButtonText}
-                            </Button>
-                        </div>
+                        <Button
+                            className='custom-button connect-button'
+                            onClick={requestAccount}>
+                            {connectButtonText}
+                        </Button>
                     </div>
                     <div
                         className="empty_mobile"
@@ -1203,8 +1180,7 @@ function WealthMountain() {
                 </div>
 
                 <Button
-                    className='custom-button desktop-button'
-                    style={{ maxHeight: "43px", backgroundColor: '#FEB800', color: 'white' }}
+                    className='custom-button connect-button desktop-button'
                     onClick={requestAccount}>
                     {connectButtonText}
                 </Button>
@@ -1217,12 +1193,21 @@ function WealthMountain() {
                     <GiHamburgerMenu />
                 </div>
             </div>
-
+            <Container>
+                {countdown.alive && 
+                    <>
+                        <h3 className='text-center font-weight-bolder text-yellow pt-5'>LAUNCH COUNTDOWN</h3>
+                        <h3 className='text-center font-weight-bolder text-yellow pb-5 pt-2'>
+                        {`${countdown.days} D : ${countdown.hours} H : ${countdown.minutes} M : ${countdown.seconds} S`}
+                        </h3>
+                    </>
+                }
+            </Container>
             <Container>
                 <CardDeck>
                     <Card className='banner-card'>
-                        <h2 className='text-green font-weight-bolder'>Welcome to the Lunar Hop NFT!</h2>
-                        <h6 className='text-white font-weight-bold' style={{lignHeight:'2.2rem'}}>The NFT collectibles that will attract good luck and make your wallet puff! The more Lunar Hop NFT you have, the greater the wealth you will attract.</h6>
+                        <h2 className='text-green text-uppercase font-weight-bolder'>Welcome to the Lunar Hop NFT!</h2>
+                        <h6 className='text-white font-weight-bold' style={{lineHeight:'2.2rem'}}>The NFT collectibles that will attract good luck and make your wallet puff! The more Lunar Hop NFT you have, the greater the wealth you will attract.</h6>
                     </Card>
                     <Card className="banner-card">
                         <img
@@ -1349,7 +1334,7 @@ function WealthMountain() {
                                         </Row>
                                     </Card>
                                     <Card style={{alignSelf:'center'}}>
-                                        <img src={coinImg} width="150px" alt="chinese coin"/>
+                                        <img src={coinImg} width="150px" alt="chinese coin" style={{margin:'0px 50px'}}/>
                                     </Card>
                                 </CardDeck>
                             </Card>
@@ -1376,7 +1361,7 @@ function WealthMountain() {
                                         <small className="source text-lightblue">Earn 10% of every buy when someone uses your referral link!</small>
                                     </Card>
                                     <Card style={{alignSelf:'center'}}>
-                                        <img src={gateImg} width="150px" alt="chinese coin"/>
+                                        <img src={gateImg} width="150px" alt="chinese coin" style={{margin:'0px 50px'}}/>
                                     </Card>
                                 </CardDeck>
                             </Card>

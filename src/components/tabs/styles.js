@@ -15,7 +15,7 @@ export const StylizedTab = styled.button`
   background: transparent;
   mix-blend-mode: normal;
   border-radius: 25px;
-  font-family: Roboto;
+  font-family: 'Montserrat';
   border: none;
   border-bottom-color: none;
   outline: none;

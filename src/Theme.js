@@ -25,7 +25,7 @@ const theme = createTheme({
     }
   },
   typography: {
-    fontFamily: "Roboto",
+    fontFamily: "Montserrat",
     body1: {  //NFT Labels
       fontSize: 16,
       fontWeight: "bolder",
