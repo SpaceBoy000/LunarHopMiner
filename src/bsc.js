@@ -20,12 +20,18 @@ import { FaCopy, FaWallet, FaUserShield, FaSearchDollar } from 'react-icons/fa';
 import { Accordion } from "react-bootstrap";
 import { GiHamburgerMenu } from "react-icons/gi"
 import axios from "axios";
-import RealTimeChart from "./chart";
+// import RealTimeChart from "./chart";
+import { Toast } from './utils';
 import Web3 from "web3";
+
+import logoImg from "./assets/img/logos/logo.svg";
 
 import rabbitsImg from "./assets/img/rabbits.png";
 import coinImg from "./assets/img/chinese_coin.png";
 import gateImg from "./assets/img/chinese_gate.png";
+
+import plusIcon from "./assets/icons/plusIcon.svg";
+import minusIcon from "./assets/icons/minusIcon.svg";
 
 import nft1 from "./assets/img/nfts/1.jpg";
 import nft2 from "./assets/img/nfts/2.jpg";
@@ -156,30 +162,58 @@ function WealthMountain() {
         ],
         [
             {
-              path: nft6,
-              name: 'Mytical'
+              path: nft2,
+              name: 'Uncommon'
             },
             {
               properties : [
                 {
                   label: "Daily Return",
-                  value: '$255',
+                  value: '$1.1',
                 },
                 {
                   label: "Price",
-                  value: "$5000",
+                  value: "$20",
                 },
                 {
                   label: "Life Span",
-                  value: '60 Days',
+                  value: '30 Days',
                 },
                 {
                   label: "Total Income",
-                  value: '$15300',
+                  value: '$33',
                 }
               ]
             },
         ],
+        [
+            {
+              path: nft3,
+              name: 'Rare'
+            },
+            {
+              properties : [
+                {
+                  label: "Daily Return",
+                  value: '$5',
+                },
+                {
+                  label: "Price",
+                  value: "$120",
+                },
+                {
+                  label: "Life Span",
+                  value: '45 Days',
+                },
+                {
+                  label: "Total Income",
+                  value: '$225',
+                }
+              ]
+            },
+        ],
+    ];
+    const nutritionFacts2 = [
         [
             {
               path: nft4,
@@ -206,8 +240,6 @@ function WealthMountain() {
               ]
             },
         ],
-    ];
-    const nutritionFacts2 = [
         [
           {
             path: nft5,
@@ -236,52 +268,26 @@ function WealthMountain() {
         ],
         [
             {
-              path: nft3,
-              name: 'Rare'
+              path: nft6,
+              name: 'Mytical'
             },
             {
               properties : [
                 {
                   label: "Daily Return",
-                  value: '$5',
+                  value: '$255',
                 },
                 {
                   label: "Price",
-                  value: "$120",
+                  value: "$5000",
                 },
                 {
                   label: "Life Span",
-                  value: '45 Days',
+                  value: '60 Days',
                 },
                 {
                   label: "Total Income",
-                  value: '$225',
-                }
-              ]
-            },
-        ],
-        [
-            {
-              path: nft2,
-              name: 'Uncommon'
-            },
-            {
-              properties : [
-                {
-                  label: "Daily Return",
-                  value: '$1.1',
-                },
-                {
-                  label: "Price",
-                  value: "$20",
-                },
-                {
-                  label: "Life Span",
-                  value: '30 Days',
-                },
-                {
-                  label: "Total Income",
-                  value: '$33',
+                  value: '$15300',
                 }
               ]
             },
@@ -290,40 +296,33 @@ function WealthMountain() {
 
     const faqData = [
         {
-          title: `What is Lunky Bunny Miner?`,
+          title: `What is Lunar Hop?`,
           content: 
             <p>
-                Lunky Bunny Miner is BUSD miner on Binance Smartchain that offers up to 303% Return of Investemnt
+                Lunar Hop NFTs were blended into the creation as it attracts you bring luck today and in the future. The more Lunar Hop NFT you have, the greater wealth you will attract.
             </p>
         },
         {
-            title: `How to deposit?`,
+            title: `Who can own Lunar Hop NFT?`,
             content: 
               <p>
-                You need to fund your trust wallet, Metamask or any applicable cryptocurrency wallet with at least 5 BUSD (BEP20).
+                You, me or anyone from around the globe can own Lunar Hop NFT. Anyone deserves to prosper and earn good luck for infinite wealth.
               </p>
         },
         {
-            title: `How much is the fee for deposit?`,
+            title: `What is Lunar Hop Miner?`,
             content: 
               <p>
-                There is a 10% fee for both deposit and withdraw.
+                The Lunar Hop Miner is the primary staking platform that provide users an opportunity to collect and earn good fortune over time.
               </p>
         },
         {
-            title: `How long can I withdraw?`,
+            title: `How do I get in touch with the team?`,
             content: 
               <p>
-                 You can withdraw your profit anytime as long as there is balance in the contract with minimum $2 in your current rewards and no maximum withdrawal.
+                 Follow us on Instagram, Twitter, and Discord for more updates and announcements.
               </p>
-        },
-        {
-            title: `Is there a minimum withdrawal amount? Also, when can I withdraw?`,
-            content: 
-              <p>
-                The minimum amount for withdrawals is 2 BUSD and No maximum rewards. And you can withdraw anytime.
-              </p>
-        },
+        } 
     ];
 
     const [sliderValue, setSliderValue] = useState('50');
@@ -921,7 +920,7 @@ function WealthMountain() {
     function TotalEarnedValue() {
         var value = calculatedDividends;
 
-        return (<>{value.toFixed(3)}</>)
+        return (<>{value.toFixed(2)}</>)
     }
 
     function TotalEarnedPercent() {
@@ -1076,6 +1075,13 @@ function WealthMountain() {
         )
     }
 
+    const copyFunc = () => {
+        navigator.clipboard.writeText(window.location + "?ref=" + userWalletAddress);
+        Toast.fire({
+            icon: 'success',
+            title: 'Successfully copied!'
+        });
+    }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //    RENDER
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1134,14 +1140,22 @@ function WealthMountain() {
                 </div>
             )
             : null}
+            {/* <Container> */}
+                {countdown.alive && 
+                    <div className='date-title'>
+                        <h5 className='text-center font-weight-bolder text-white pt-1'>Launch Date &nbsp;&nbsp;</h5>
+                        <h5 className='text-center font-weight-bolder text-white pt-1'>{`${countdown.days} D : ${countdown.hours} H : ${countdown.minutes} M : ${countdown.seconds >= 10 ? countdown.seconds : '0' + countdown.seconds} S`}</h5>
+                    </div>
+                }
+            {/* </Container> */}
             <div className="custom-header">
                 {/* <Card className="px-5 py-2"> */}
-                {/* <img
+                <img
                     alt="..."
-                    src="./favicon.png"
-                    style={{ width: 'auto', height: '96px' }}
-                /> */}
-                <h2 className="text-white font-weight-bolder">LUNAR HOP</h2>
+                    src={logoImg}
+                    style={{ width: 'auto', height: '28px' }}
+                />
+                {/* <h2 className="text-white font-weight-bolder">LUNAR HOP</h2> */}
                 {/* </Card> */}
                 <div className="header_menu">
                     <Item>
@@ -1193,21 +1207,20 @@ function WealthMountain() {
                     <GiHamburgerMenu />
                 </div>
             </div>
-            <Container>
-                {countdown.alive && 
-                    <>
-                        <h3 className='text-center font-weight-bolder text-yellow pt-5'>LAUNCH COUNTDOWN</h3>
-                        <h3 className='text-center font-weight-bolder text-yellow pb-5 pt-2'>
-                        {`${countdown.days} D : ${countdown.hours} H : ${countdown.minutes} M : ${countdown.seconds} S`}
-                        </h3>
-                    </>
-                }
-            </Container>
+            
             <Container>
                 <CardDeck>
                     <Card className='banner-card'>
-                        <h2 className='text-green text-uppercase font-weight-bolder'>Welcome to the Lunar Hop NFT!</h2>
+                        <h2 className='text-white text-uppercase font-weight-bolder'>Welcome to the Lunar Hop NFT!</h2>
+                        {/* <p style={{fontFamily:'Montserrat', fontSize:'54px', fontWeight:'900', lineHeight:'72px'}}>Welcome to the Lunar Hop NFT!</p> */}
                         <h6 className='text-white font-weight-bold' style={{lineHeight:'2.2rem'}}>The NFT collectibles that will attract good luck and make your wallet puff! The more Lunar Hop NFT you have, the greater the wealth you will attract.</h6>
+                        <h6 className='pt-4'>Follow our telegram for more updates</h6>
+                        <a href='https://t.me/' target="_blank" rel='noreferrer' style={{width: '50%'}}>
+                        <Button
+                            className='custom-button connect-button' style={{width: '100%', textTransform: 'unset'}}>
+                            Telegram
+                        </Button>
+                        </a>
                     </Card>
                     <Card className="banner-card">
                         <img
@@ -1254,7 +1267,7 @@ function WealthMountain() {
                                             </Grid>
                                             ))}
                                         </Box>
-                                        <div style={{textAlign:'center', display:'flex', justifyContent:'space-between'}}>
+                                        <div style={{textAlign:'center', display:'flex', justifyContent:'space-between', marginTop:'10px' }}>
                                             <button className='btn_buy' >Approve</button>
                                             <button className='btn_buy' >Buy</button>
                                         </div>
@@ -1265,7 +1278,7 @@ function WealthMountain() {
                         <CardDeck style={{justifyContent: 'center'}}>
                             {nutritionFacts2.map((item, index) => (
                                 <div className='nft-card'>
-                                    <Typography variant="h5" color="white" paddingBottom={1}>
+                                    <Typography variant="h5" color={index == 0 ? 'white' : 'yellow'} paddingBottom={1}>
                                         {item[0].name}
                                     </Typography>
                                     <img src={item[0].path} alt="nft" width="100%" style={{borderRadius: '20px'}}/>
@@ -1280,7 +1293,7 @@ function WealthMountain() {
                                             </Grid>
                                             ))}
                                         </Box>
-                                        <div style={{textAlign:'center', display:'flex', justifyContent:'space-between'}}>
+                                        <div style={{textAlign:'center', display:'flex', justifyContent:'space-between', marginTop:'10px'}}>
                                             <button className='btn_buy' >Approve</button>
                                             <button className='btn_buy' >Buy</button>
                                         </div>
@@ -1293,19 +1306,19 @@ function WealthMountain() {
                     <TabPanel value={activeTab} selectedIndex={1}>
                         <Container className='my-4'>
                             <CardDeck>
-                                <Card body className="text-center">
+                                <Card body className="text-center" style={{borderRadius: '32px 32px 48px 48px'}}>
                                     <h5 className="calvino text-white">Wealth Gained</h5>
                                     <h5 className="source font-weight-bold text-lightblue">
                                         {Number(contractBalance) === 0 ? <>$0</> : <>${Number(contractBalance).toFixed(0)}</>}
                                     </h5>
                                 </Card>
-                                <Card body className="text-center">
+                                <Card body className="text-center" style={{borderRadius: '32px 32px 48px 48px'}}>
                                     <h5 className="calvino text-white">Daily Earnings</h5>
                                     <h5 className="source font-weight-bold text-lightblue">
                                         {Number(totalUsers) === 0 ? <>?</> : <>{Number(totalUsers)}</>}
                                     </h5>
                                 </Card>
-                                <Card body className="text-center">
+                                <Card body className="text-center" style={{borderRadius: '32px 32px 48px 48px'}}>
                                     <h5 className="calvino text-white">Referral Rewards</h5>
                                     <h5 className="source font-weight-bold text-lightblue">
                                         10%
@@ -1314,14 +1327,14 @@ function WealthMountain() {
                             </CardDeck>
                         </Container>
                         <CardDeck className="p-3">
-                            <Card body className="text-center text-lightblue">
+                            <Card body className="text-center text-lightblue" style={{borderRadius: '32px 32px 48px 48px'}}>
                                 <CardDeck className="sub-card">
                                     <Card>
                                         <h4 className="calvino text-white">Total Wealth Earned</h4>
                                         <CardDeck>
-                                            <Card style={{ background: "transparent" }}>
+                                            {/* <Card style={{ background: "transparent" }}>
                                                 <h4 className="source font-weight-bold text-white"><TotalEarnedPercent /></h4>
-                                            </Card>
+                                            </Card> */}
                                             <Card style={{ background: "transparent" }}>
                                                 <h4 className="source font-weight-bold text-white">$<TotalEarnedValue /></h4>
                                             </Card>
@@ -1333,25 +1346,26 @@ function WealthMountain() {
                                             </Col>
                                         </Row>
                                     </Card>
-                                    <Card style={{alignSelf:'center'}}>
-                                        <img src={coinImg} width="150px" alt="chinese coin" style={{margin:'0px 50px'}}/>
+                                    <Card style={{alignItems:'center'}}>
+                                        <img src={coinImg} width="150px" alt="chinese coin"/>
                                     </Card>
                                 </CardDeck>
                             </Card>
                         </CardDeck>
                         <CardDeck className="pl-3 pr-3 pb-3">
-                            <Card body className="text-center text-lightblue">
+                            <Card body className="text-center text-lightblue" style={{borderRadius: '32px 32px 48px 48px'}}>
                                 <CardDeck className="sub-card">
                                     <Card>
                                         <h4 className="calvino text-white">Referral Link</h4>
                                         {/* <h3 type="button" onClick={() => navigator.clipboard.writeText("https://busd.wcminer.com?ref=" + userWalletAddress)} className="referralButton source font-weight-bold"><FaCopy size="1.6em" className="pr-3" />COPY LINK</h3> */}
-                                        <Form onClick={() => navigator.clipboard.writeText(window.location + "?ref=" + userWalletAddress)}>
+                                        <Form onClick={copyFunc}>
                                             <FormGroup>
                                                 <InputGroup>
                                                     <Input
-                                                        className="custom-input text-center source"
-                                                        placeholder={window.location + "?ref=" + userWalletAddress}
+                                                        className="custom-input text-center text-yellow source"
+                                                        value={window.location + "?ref=" + userWalletAddress}
                                                         disabled
+                                                        style={{cursor:'pointer'}}
                                                     >
                                                     {/* <FaCopy style={{background:'white'}}/> */}
                                                     </Input>
@@ -1360,8 +1374,8 @@ function WealthMountain() {
                                         </Form>
                                         <small className="source text-lightblue">Earn 10% of every buy when someone uses your referral link!</small>
                                     </Card>
-                                    <Card style={{alignSelf:'center'}}>
-                                        <img src={gateImg} width="150px" alt="chinese coin" style={{margin:'0px 50px'}}/>
+                                    <Card style={{alignItems:'center'}}>
+                                        <img src={gateImg} width="150px" alt="chinese gate"/>
                                     </Card>
                                 </CardDeck>
                             </Card>
@@ -1518,7 +1532,7 @@ function WealthMountain() {
                 </Container>
             </div>
             <Container style={{marginTop:'50px'}}>
-                <h3 className='py-3 text-white text-center font-weight-bolder'>Frequently Asked Questions</h3>
+                <h3 className='py-3 text-darker text-center font-weight-bolder'>Frequently Asked Questions</h3>
                 <Accordion style={{padding:'0px 30px'}}>
                 {faqData.map((item, index) => {
                     return (
@@ -1528,8 +1542,8 @@ function WealthMountain() {
                                 <div className="faqheading">
                                     {item.title}
                                 </div>
-                                {/* <img id='plus' src={plusIcon}/>
-                                <img id='minus' src={minusIcon}/> */}
+                                <img id='plus' src={plusIcon}/>
+                                <img id='minus' src={minusIcon}/>
                             </Accordion.Header>
                             <Accordion.Body className="faqbody">
                                 {item.content}
@@ -1552,7 +1566,7 @@ function WealthMountain() {
                         <a href="https://twitter.com/" target="_blank" rel="noreferrer"> TWITTER </a>
                         <a href="https://t.me/" target="_blank" rel="noreferrer"> TELEGRAM </a>
                     </CardDeck>
-                    <p style={{ fontSize: '20px', color: 'white', paddingTop: '30px', fontWeight: 'bold' }}>© Luner Hop Team , All Rights Reserved</p>
+                    <p style={{ fontSize: '16px', color: 'white', paddingTop: '30px', fontWeight: 'bold' }}>© Luner Hop Team , All Rights Reserved</p>
                 </Card>
             </div>
         </>

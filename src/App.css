@@ -157,7 +157,7 @@ hr.rounded {
   --pink: #f3a4b5;
   --red: #f5365c;
   --orange: #fb6340;
-  --yellow: #ffd600;
+  --yellow: #FEB800;
   --green: #2dce89;
   --teal: #11cdef;
   --cyan: #2bffc6;
@@ -459,7 +459,7 @@ h1, h2, h3, h4, h5, h6,
   font-family: "Montserrat";
   font-weight: 400;
   line-height: 1.5;
-  color: #fb0; }
+  color: white; }
 
 h1, .h1 {
   font-size: 2.5rem; }
@@ -11670,7 +11670,7 @@ a.text-orange:hover, a.text-orange:focus {
   color: #ea3005 !important; }
 
 .text-yellow {
-  color: #ffd600 !important; }
+  color: #FEB800 !important; }
 
 a.text-yellow:hover, a.text-yellow:focus {
   color: #b39600 !important; }
@@ -17206,7 +17206,7 @@ td.rdtYear:hover {
 .custom-header {
   display: grid;
   justify-content: center;
-  padding-top: 2rem;
+  padding-top: 1rem;
   gap: 1rem;
   margin: 0px 50px;
 }
@@ -17222,7 +17222,7 @@ td.rdtYear:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 3rem;
+    padding-top: 1rem;
     padding-bottom: 3rem;
     padding-left: 2rem;
     padding-right: 2rem;
@@ -17261,8 +17261,8 @@ td.rdtYear:hover {
   padding-right: 1rem;
   justify-content: space-evenly;
   color: white;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 24px;
+  font-weight: 400;
   width: 70%;
   align-self: center;
 }
@@ -17508,6 +17508,22 @@ td.rdtYear:hover {
   border-bottom-right-radius: 23px;
 }
 
+.accordion-button > #plus {
+  display: none;
+}
+.accordion-button > #minus {
+  display: block;
+}
+
+
+.accordion-button.collapsed > #plus {
+  display: block;
+}
+
+.accordion-button.collapsed > #minus {
+  display: none;
+}
+
 .mobile-menu-item {
   color: white;
   text-decoration: none;
@@ -17519,4 +17535,10 @@ td.rdtYear:hover {
   max-height: 43px;
   background-color: #FEB800;
   color: white;
+}
+
+.date-title {
+  display: flex;
+  justify-content: center;
+  background: #AA1B21;
 }
