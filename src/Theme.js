@@ -28,8 +28,8 @@ const theme = createTheme({
     fontFamily: "Montserrat",
     body1: {  //NFT Labels
       fontSize: 16,
-      fontWeight: "bolder",
-      opacity:'0.7',
+      fontWeight: 500,
+      // opacity:'0.7',
     },
     body2: {
       fontSize: 16,

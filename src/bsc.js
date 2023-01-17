@@ -1144,7 +1144,7 @@ function WealthMountain() {
                 {countdown.alive && 
                     <div className='date-title'>
                         <h5 className='text-center font-weight-bolder text-white pt-1'>Launch Date &nbsp;&nbsp;</h5>
-                        <h5 className='text-center font-weight-bolder text-white pt-1'>{`${countdown.days} D : ${countdown.hours} H : ${countdown.minutes} M : ${countdown.seconds >= 10 ? countdown.seconds : '0' + countdown.seconds} S`}</h5>
+                        <h5 className='text-center font-weight-bolder text-yellow pt-1'>{`${countdown.days} D : ${countdown.hours} H : ${countdown.minutes} M : ${countdown.seconds >= 10 ? countdown.seconds : '0' + countdown.seconds} S`}</h5>
                     </div>
                 }
             {/* </Container> */}
@@ -1211,11 +1211,11 @@ function WealthMountain() {
             <Container>
                 <CardDeck>
                     <Card className='banner-card'>
-                        <h2 className='text-white text-uppercase font-weight-bolder'>Welcome to the Lunar Hop NFT!</h2>
+                        <h2 className='text-dark text-uppercase' style={{fontWeight:'900'}}>Welcome to the Lunar Hop NFT!</h2>
                         {/* <p style={{fontFamily:'Montserrat', fontSize:'54px', fontWeight:'900', lineHeight:'72px'}}>Welcome to the Lunar Hop NFT!</p> */}
                         <h6 className='text-white font-weight-bold' style={{lineHeight:'2.2rem'}}>The NFT collectibles that will attract good luck and make your wallet puff! The more Lunar Hop NFT you have, the greater the wealth you will attract.</h6>
                         <h6 className='pt-4'>Follow our telegram for more updates</h6>
-                        <a href='https://t.me/' target="_blank" rel='noreferrer' style={{width: '50%'}}>
+                        <a href='https://t.me/Lunarhop' target="_blank" rel='noreferrer' style={{width: '50%'}}>
                         <Button
                             className='custom-button connect-button' style={{width: '100%', textTransform: 'unset'}}>
                             Telegram
@@ -1234,7 +1234,6 @@ function WealthMountain() {
 
             <div className='main-content'>
                 <Container className="pt-3">
-                    
                     <TabsContainer className="pt-3">
                         <Tabs selectedTab={activeTab} onChange={handleChange}>
                             <Tab label="Marketplace" value={0}></Tab>
@@ -1246,7 +1245,7 @@ function WealthMountain() {
                     <TabPanel value={activeTab} selectedIndex={0}>
                         <Row>
                             <Col className="text-center">
-                                <h3 className='py-3 text-white font-weight-bolder'>Purchase Lunar Hop NFT</h3>
+                                <h3 className='pb-4 text-dark font-weight-bolder'>Purchase Lunar Hop NFT</h3>
                             </Col>
                         </Row>
                         <CardDeck style={{justifyContent: 'center'}}>
@@ -1562,9 +1561,9 @@ function WealthMountain() {
                         {/* <a href="https://georgestamp.xyz/2022/09/wc-miner-busd/" target="_blank" rel="noreferrer"> AUDIT </a> */}
                         {/* <SelectObject value={auditNo} onChangeAuditNo={onChangeAuditNo}/> */}
                         <a href="https://bscscan.com/address/" target="_blank" rel="noreferrer"> CONTRACT </a>
-                        <a href="/whitepaper.pdf" target="_blank" rel="noreferrer"> DOCS </a>
-                        <a href="https://twitter.com/" target="_blank" rel="noreferrer"> TWITTER </a>
-                        <a href="https://t.me/" target="_blank" rel="noreferrer"> TELEGRAM </a>
+                        <a href="/whitepaper.pdf" target="_blank" rel="noreferrer"> HOP PAPER </a>
+                        <a href="https://twitter.com/lunar_hop" target="_blank" rel="noreferrer"> TWITTER </a>
+                        <a href="https://t.me/Lunarhop" target="_blank" rel="noreferrer"> TELEGRAM </a>
                     </CardDeck>
                     <p style={{ fontSize: '16px', color: 'white', paddingTop: '30px', fontWeight: 'bold' }}>© Luner Hop Team , All Rights Reserved</p>
                 </Card>

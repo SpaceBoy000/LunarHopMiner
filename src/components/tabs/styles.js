@@ -47,6 +47,7 @@ export const TabsHolder = styled.div`
   border-radius: 35px;
   width: 50%;
   align-self: center;
+  margin: 50px 0px;
   @media(max-width: 1024px) {
     width: 100%;
   }
