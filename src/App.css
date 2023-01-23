@@ -23,6 +23,29 @@
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1a1b1c;
+  border-radius: 5px;
+  border: solid 2px #282c34;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #1a1b1c;
+  border-radius: 5px;
+  border: solid 2px #1a1b1c;
+}
+
 
 
 .dropdown-hover-style:hover {
@@ -10408,6 +10431,9 @@ button.bg-darker:focus {
 .font-weight-bolder {
   font-weight: bolder !important; }
 
+.font-weight-900 {
+  font-weight: 900 !important; }
+
 .font-italic {
   font-style: italic !important; }
 
@@ -17443,6 +17469,17 @@ td.rdtYear:hover {
   box-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff, 0 0 0.4em #f5ea1a, 0 0 0.6em #e0f734, 0 0 0.8em #ebf705, 0 0 1em #e1f414, 0 0 1.2em #cde60f;  
 }
 
+.nft-card-container {
+  display: flex;
+  justify-content: left;
+  overflow-x: scroll;
+  /* max-width: 400px; */
+  flex-direction: row !important;
+  padding: 20px;
+  flex-flow: unset;
+}
+
+
 .btn_buy {
   border-radius: 18px;
   /* border: solid 3px #2b2d35; */
@@ -17451,6 +17488,7 @@ td.rdtYear:hover {
   font-size: 18px;
   padding: 4px 20px;
   border: none;
+  margin: 5px;
 }
 
 .btn_buy:hover {
@@ -17466,6 +17504,7 @@ td.rdtYear:hover {
   font-size: 16px;
   line-height: 30px;
   color: white;
+  padding-left: 10px;
 }
 
 .faqbody {
@@ -17474,6 +17513,25 @@ td.rdtYear:hover {
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
+  color: white;
+  padding-left: 15px;
+}
+
+
+/* .accordion-button {
+  background: transparent !important;
+  color: white;
+} */
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+.accordion-button:hover {
+  color: #f4c444;
+}
+
+.accordion-button:not(.collapsed) {
   color: white;
 }
 
